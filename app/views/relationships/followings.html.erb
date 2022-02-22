@@ -1,2 +1,7 @@
-<h1>Follow Users</h1>
-<%= render 'follow_list', users: @users %>
+<h2>Follow Users</h2>
+<% if @users.exists? %>
+<!--上記はフォローしいるユーザがいたら？という意味-->
+  <%= render '/users/index', users: @users %>
+<% else %>
+  <p>ユーザーはいません</p>
+<% end %>
