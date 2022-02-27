@@ -6,7 +6,8 @@
              <% end %>
          <td><%= book_comment.comment %></td>
          <% if book_comment.user == current_user %>
-         <td><%= link_to "Destroy", book_book_comment_path(book_comment.book, book_comment), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %>
+         <td><%= link_to "Destroy", book_book_comment_path(book_comment.book, book_comment), method: :delete, remote: true, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %>
+         <!--上記にremote: trueを追加-->
          </td>
          <% end %>
         </tr>
