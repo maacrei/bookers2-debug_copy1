@@ -11,6 +11,8 @@
       <%= render 'book_comment', books: @books, user: @user %>
       <h3>投稿数の前日比・前週比</h3>
       <%= render 'book_count', books: @books, user: @user %>
+      <h3>7日間分の投稿数</h3>
+      <%= render 'book_index' %>
     </div>
   </div>
 </div>
