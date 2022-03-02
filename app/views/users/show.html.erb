@@ -9,10 +9,9 @@
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
       <%= render 'book_comment', books: @books, user: @user %>
-      <%= render 'search_form', user: @user, search_book: @search_book %>
-
+      <%= render 'search_form', user: @user, search_book: @search_book %><br>
       <h3>投稿数の前日比・前週比</h3>
-      <%= render 'book_count', books: @books, user: @user %>
+      <%= render 'book_count', books: @books, user: @user %><br>
       <h3>7日間分の投稿数</h3>
       <%= render 'book_index' %>
     </div>
