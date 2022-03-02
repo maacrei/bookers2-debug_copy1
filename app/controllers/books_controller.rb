@@ -9,7 +9,16 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.all
+    # @books = Book.all
+    # to = Time.current.at_end_of_day
+    # from = ( to - 6.day ).at_beginning_of_day
+    # 下記について where~end_of_day)までを消すといいねが多い順に表示されるが付けると表示する件数が勝手に減る
+    # ページネーション表示のために@booksからbooksに変えた　問題ないの？
+    books = Book.includes(:favorited_users).sort {|a,b|
+      b.favorited_users.includes(:favorites).where(created_at: 6.day.ago.beginning_of_day..Time.zone.now.end_of_day).size <=>
+      a.favorited_users.includes(:favorites).where(created_at: 6.day.ago.beginning_of_day..Time.zone.now.end_of_day).size }
+    @books = Kaminari.paginate_array(books).page(params[:page]).per(10)
+    # 上記はページネーションのために追記
     @book = Book.new
   end
 
