@@ -28,6 +28,13 @@
 
 <div class='row'>
 <% if user != current_user %>
+<span>
  <%= render "relationships/follow_btn", user: user %>
+
+ <% if (current_user.following? user) && (user.following? current_user) %>
+ <%= link_to 'chatを始める', chat_path(user.id) %>
+ <% end %>
+
+</span>
 <% end %>
 </div>
