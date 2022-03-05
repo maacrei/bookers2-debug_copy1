@@ -7,6 +7,8 @@ class Book < ApplicationRecord
   has_many :book_comments, dependent: :destroy
   validates :title,presence:true
   validates :body,presence:true,length:{maximum:200}
+  
+  has_many :view_counts, dependent: :destroy
 
   scope :created_today, -> { where(created_at: Time.zone.now.all_day) }
   scope :created_yesterday, -> { where(created_at: 1.day.ago.all_day) }

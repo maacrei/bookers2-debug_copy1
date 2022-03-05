@@ -10,6 +10,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
   </head>
   <body>
+  <!--Turbolinksをページごとに無効化-->
+  <div
+  <% if content_for?(:body_attributes) %>
+    <%= yield(:body_attributes) %>
+  <% end %>
+  >
+  <!--ここまで-->
+
     <%= render 'layouts/header' %>
     <!--検索ボックス-->
     <%= render 'searches/form' %>
@@ -18,5 +26,8 @@
         <%= yield %>
       </main>
     <%= render 'layouts/footer' %>
+
+  </div>
+
   </body>
 </html>

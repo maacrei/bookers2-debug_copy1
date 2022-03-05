@@ -1,3 +1,9 @@
+<!--Turbolinksをページごとに無効化-->
+<% content_for(:body_attributes) do %>
+    data-turbolinks="false"
+<% end %>
+<!--ここまで-->
+
 <div class='container px-5 px-sm-0'>
 
 <% if @book.errors.any? %>
