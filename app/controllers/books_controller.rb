@@ -5,11 +5,15 @@ class BooksController < ApplicationController
     @user = @book.user
     @new_book = Book.new
     @book_comment = BookComment.new
-    # 上記をコメントを投稿するためのインスタンス変数
+    # 上記はコメントを投稿するためのインスタンス変数
   end
 
   def index
-    @books = Book.all
+    to  = Time.current.at_beginning_of_day
+    from  = (to - 6.day).at_end_of_day
+    @books = Book.all.sort {|a,b|
+      b.favorited_users.size <=>
+      a.favorited_users.includes(:favorites).where(created_at: from...to).size }
     @book = Book.new
   end
 

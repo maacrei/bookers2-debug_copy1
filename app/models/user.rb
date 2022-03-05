@@ -7,6 +7,14 @@ class User < ApplicationRecord
   has_many :books
   has_many :favorites, dependent: :destroy
   has_many :book_comments, dependent: :destroy
+
+  # has_many :user_rooms, dependent: :destroy
+  # has_many :chats, dependent: :destroy
+  # 下記が解答のコードで上記が参考サイトのコード
+  has_many :user_rooms
+  has_many :chats
+  has_many :rooms, through: :user_rooms
+
   has_one_attached :profile_image
   # フォローをした、されたの関係
   has_many :relationships, class_name: "Relationship",foreign_key: "follower_id", dependent: :destroy

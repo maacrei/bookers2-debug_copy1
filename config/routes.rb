@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   root :to =>"homes#top"
   get "home/about"=>"homes#about"
   get "search"=>"searches#search"
-
+  # get 'chats/show'
+  get 'chat/:id', to: 'chats#show', as: 'chat'
+  resources :chats, only: [:create]
 
   resources :books do
     resource :favorites, only: [:create, :destroy]
