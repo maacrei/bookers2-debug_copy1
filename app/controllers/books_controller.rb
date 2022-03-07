@@ -14,14 +14,16 @@ class BooksController < ApplicationController
   end
 
   def index
-
-
-    to  = Time.current.at_beginning_of_day
-    from  = (to - 6.day).at_end_of_day
-    @books = Book.all.sort {|a,b|
-      b.favorited_users.size <=>
-      a.favorited_users.includes(:favorites).where(created_at: from...to).size }
+    @books = Book.all.order(params[:sort])
     @book = Book.new
+    # 下記は課題7aのための記述
+    # 課題8dのためにコメントアウトした
+    # to  = Time.current.at_beginning_of_day
+    # from  = (to - 6.day).at_end_of_day
+    # @books = Book.all.sort {|a,b|
+      # b.favorited_users.size <=>
+      # a.favorited_users.includes(:favorites).where(created_at: from...to).size }
+    # @book = Book.new
   end
 
   def create
@@ -63,11 +65,5 @@ class BooksController < ApplicationController
   def book_params
     params.require(:book).permit(:title, :body, :star)
   end
-
-
-    def sort_params
-      params.permit(:sort)
-    end
-
 
 end
