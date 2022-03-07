@@ -14,6 +14,8 @@ class BooksController < ApplicationController
   end
 
   def index
+
+
     to  = Time.current.at_beginning_of_day
     from  = (to - 6.day).at_end_of_day
     @books = Book.all.sort {|a,b|
@@ -61,6 +63,11 @@ class BooksController < ApplicationController
   def book_params
     params.require(:book).permit(:title, :body, :star)
   end
+
+
+    def sort_params
+      params.permit(:sort)
+    end
 
 
 end
