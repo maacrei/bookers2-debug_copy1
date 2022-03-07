@@ -37,6 +37,13 @@ class BooksController < ApplicationController
     end
   end
 
+
+  def search_book
+    @book=Book.new
+    @books = Book.search(params[:keyword])
+  end
+
+
   def edit
     @book = Book.find(params[:id])
     unless @book.user == current_user
@@ -63,7 +70,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :body, :star)
+    params.require(:book).permit(:title, :body, :star, :tag)
   end
 
 end

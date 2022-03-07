@@ -7,6 +7,7 @@ class Book < ApplicationRecord
   has_many :book_comments, dependent: :destroy
   validates :title,presence:true
   validates :body,presence:true,length:{maximum:200}
+  validates :tag,presence:true
 
   has_many :view_counts, dependent: :destroy
 
@@ -39,6 +40,11 @@ class Book < ApplicationRecord
     else
       Book.where('title LIKE ?', '%'+content+'%')
     end
+  end
+
+
+  def self.search(search_word)
+    Book.where(['tag LIKE ?', "#{search_word}"])
   end
 
 

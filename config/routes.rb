@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   root :to =>"homes#top"
   get "home/about"=>"homes#about"
   get "search"=>"searches#search"
+  
+  get "search_book" => "books#search_book"
+  # get "search_book" => "searches#search_book"
+  
   # get 'chats/show'
   get 'chat/:id', to: 'chats#show', as: 'chat'
   resources :chats, only: [:create]
