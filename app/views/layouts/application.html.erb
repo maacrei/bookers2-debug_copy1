@@ -17,17 +17,23 @@
   <% end %>
   >
   <!--ここまで-->
-
     <%= render 'layouts/header' %>
     <!--検索ボックス-->
     <%= render 'searches/form' %>
       <main>
         <p id="notice"><%= notice %></p>
         <%= yield %>
+       <!--トップに戻るボタン 配置の設定ができな-->
+       <span id="back", class="float-right">
+       <a href="#">
+        <%= image_tag "arrow.png", size:"50x50" %>
+       </a>
+       </span>
+    　 <!--ここまで-->
       </main>
     <%= render 'layouts/footer' %>
-
   </div>
-
+  <!--下記はトップへ戻るボタンのために-->
+  <script src="js/script.js"></script>
   </body>
 </html>
