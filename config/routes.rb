@@ -6,12 +6,13 @@ Rails.application.routes.draw do
   root :to =>"homes#top"
   get "home/about"=>"homes#about"
   get "search"=>"searches#search"
-  
   get "search_book" => "books#search_book"
-  # get "search_book" => "searches#search_book"
-  
-  # get 'chats/show'
   get 'chat/:id', to: 'chats#show', as: 'chat'
+  
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end  
+  
   resources :chats, only: [:create]
 
   resources :books do
